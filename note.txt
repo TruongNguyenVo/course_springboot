@@ -1,0 +1,1 @@
+Để sử dụng IOC Container, bạn định nghĩa các đối tượng trong ứng dụng của mình bằng cách sử dụng các annotation như @Component, @Service, @Repository hoặc @Controller.
