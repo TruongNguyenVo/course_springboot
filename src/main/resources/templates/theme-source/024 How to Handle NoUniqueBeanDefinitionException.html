@@ -1,0 +1,25 @@
+<h4>Problem</h4><p>Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'com.spring.core.di.MessageService' available: expected single matching bean but found 2: emailService,SMSService at org.springframework.beans.factory.config.DependencyDescriptor.resolveNotUnique(DependencyDescriptor.java:220)</p><h4>Solution</h4><p>In the next lecture, we will learn constructor-based dependency injection. We will create spring beans for <strong>EmailService </strong>and <strong>SMSService </strong>classes to demonstrate the constructor-based dependency injection.</p><p>In Spring Framework, when you declare a bean without specifying a name for it, the Spring container uses a default naming convention to generate a name for that bean.</p><p><strong>Default Naming Convention:</strong> The default bean name is the unqualified class name, with the <strong>first letter changed to lowercase</strong>.</p><p>In our case, we have the SMSService class which contains the first four capital letters, and the Spring container configures the default bean name as "<strong>SMSService</strong>" (since the name starts with an acronym).</p><p>We want the bean name as "smsService" as we inject SMSService in MessageSender:</p><pre class="prettyprint linenums">@Autowired
+    public MessageSender(@Qualifier("emailService") MessageService messageService, 
+                         MessageService smsService) {
+    
+        this.messageService = messageService;
+    
+        this.smsService = smsService;
+    
+        System.out.println("Constructor based dependency injection2");
+    
+    }</pre><p>Due to this bean name ambiguity, the Spring container throws <strong>NoUniqueBeanDefinitionException.</strong></p><p>So to resolve this <strong>NoUniqueBeanDefinitionException </strong>exception, we need to configure the bean name <strong>smsService</strong> for the SMSService class explicitly. </p><p>For example:</p><pre class="prettyprint linenums">@Component("smsService")</pre><p>Complete code:</p><pre class="prettyprint linenums">@Component("smsService")
+    public class SMSService implements MessageService{
+    
+        @Override
+        public void sendMessage(String message){
+            System.out.println(message);
+        }
+    }</pre><p>Make sure that in the next lecture, you configure the bean name for the SMSService class: <code>@Component("smsService")</code></p><h4>Quick Guide on Spring Bean Naming Convention</h4><p>In Spring Framework, when you declare a bean without specifying a name or ID for it, the framework uses a default naming convention to generate a name for that bean. </p><p><strong>Default Naming Convention: </strong>The default bean name is the unqualified class name, with the first letter changed to lowercase. </p><p><strong>For example: </strong></p><p>If your bean class is <strong>com.example.MyService</strong>, the default bean name will be <strong>myService</strong>. </p><p>If your bean class is <strong>com.example.HTTPService</strong>, the default bean name will be HTTPService (since the name starts with an acronym). </p><p>However, remember that if you provide a name or ID explicitly, that will take precedence over the default naming convention. </p><p><strong>For example:</strong></p><pre class="prettyprint linenums">@Component("smsService")
+    public class SMSService implements MessageService{
+    
+        @Override
+        public void sendMessage(String message){
+            System.out.println(message);
+        }
+    }</pre><p>In this case, the bean name will be <strong>smsService </strong>instead of the default <strong>SMSService</strong>.</p>
