@@ -13,7 +13,7 @@ public class DemoClient {
             DemoController demoController  = applicationContext.getBean(DemoController.class);
             System.out.println(demoController.hello());
             DemoRepository demoRepository  = applicationContext.getBean(DemoRepository.class);
-            System.out.println(demoController.hello());
+            System.out.println(demoRepository.hello());
             DemoService demoService = applicationContext.getBean(DemoService.class);
             System.out.println(demoService.hello());
 

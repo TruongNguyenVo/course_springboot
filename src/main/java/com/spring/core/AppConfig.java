@@ -10,10 +10,10 @@ public class AppConfig {
 
 
 
-    // @Bean
-    // public Vehicle  car(){
-    //     return new Car();
-    // }
+    @Bean
+    public Vehicle  car(){
+        return new Car();
+    }
     // @Bean
     // public Vehicle  bike(){
     //     return new Bike();

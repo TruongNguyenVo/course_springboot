@@ -9,7 +9,7 @@ public class Traveler{
     private Vehicle vehicle;
 
     @Autowired
-    public Traveler(@Qualifier("bike") Vehicle vehicle){
+    public Traveler(@Qualifier("car") Vehicle vehicle){
         this.vehicle = vehicle;
     }
     public void startJourney(){
