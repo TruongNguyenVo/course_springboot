@@ -7,7 +7,11 @@ import org.springframework.stereotype.Component;
 @Component("messageSender")
 public class MessageSender {
     
+    @Autowired
+    @Qualifier("sms")
     private MessageService messageService;
+    
+    @Autowired
     private MessageService eMessageService;
 
     // @Autowired
@@ -24,10 +28,11 @@ public class MessageSender {
     // }
 
 
-    @Autowired
-    public void setMessageSender(@Qualifier("sms") MessageService messageService){
-        this.messageService = messageService;
-    }
+    // @Autowired
+    // public void setMessageSender(@Qualifier("sms") MessageService messageService){
+    //     this.messageService = messageService;
+    // }
+
 
     public void sendMessage(String message){
         this.messageService.sendMessage(message);
