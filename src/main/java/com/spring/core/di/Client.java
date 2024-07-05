@@ -13,7 +13,6 @@ public class Client {
         // messageSender.sendMessage(message);
 
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
-        SMSService smsService = applicationContext.getBean(SMSService.class);
         MessageSender messageSender = applicationContext.getBean(MessageSender.class);
         messageSender.sendMessage(message);
 
