@@ -15,8 +15,13 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		//http:localhost:8081
 		ApplicationContext applicationContext =  SpringApplication.run(DemoApplication.class, args);																																																																																																																																											
-		HelloWorld helloWorld = applicationContext.getBean(HelloWorld.class);
-		System.out.println(helloWorld.hello());
+		// HelloWorld helloWorld = applicationContext.getBean(HelloWorld.class);
+		// System.out.println(helloWorld.hello());
+
+		String[] beanNames = applicationContext.getBeanDefinitionNames();
+		for (String bean : beanNames) {
+			System.out.println(bean);
+		}
 	}
 
 }
