@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,12 +22,16 @@ public class StudentController {
 
     //http://localhost:8081/student
     @GetMapping("student")
-    public Student getStudent(){
+    public ResponseEntity<Student> getStudent(){
         Student student = new Student(
         1,
         "Nguyen",
         "Vo");
-        return student;
+        //return new ResponseEntity<>(student, HttpStatus.OK);
+        //return ResponseEntity.ok(student);
+        return ResponseEntity.ok()
+                                .header("custome-header", "nguyen")
+                                .body(student);
     }
 
     //http://localhost:8081/students
