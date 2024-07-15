@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nguyen.demo.rest_api.bean.Student;
@@ -41,4 +42,14 @@ public class StudentController {
     public Student studentPathVariable(@PathVariable("id") int id, @PathVariable("first_name") String firstName){
         return new Student(id, firstName, "vo");
     }
+
+    //Spring Boot RestAPI with Request Param
+    //http://localhost:8081/student/query?id=1&firstName=nguyen
+    @GetMapping("student/query")
+    public Student studentRequestParam(@RequestParam int id,
+                                       @RequestParam String firstName){
+        return new Student(id, firstName, "vo");
+    }
+
+
 }
