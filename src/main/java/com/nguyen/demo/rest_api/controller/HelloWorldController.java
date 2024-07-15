@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloWorldController {
 
     //HTTP GET request
-    // http://localhost:8081/hello-world
+    //http://localhost:8081/hello-world
     @GetMapping("/hello-world")
     public String hellowWorld(){
         return "Hello World!";
