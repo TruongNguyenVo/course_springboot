@@ -3,9 +3,13 @@ package com.nguyen.demo.rest_api.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nguyen.demo.rest_api.bean.Student;
@@ -50,6 +54,19 @@ public class StudentController {
                                        @RequestParam String firstName){
         return new Student(id, firstName, "vo");
     }
+
+    //Spring Boot RestAPI that handles HTTP POST request
+    //@PostMapping and @RequestBody
+    //http://localhost:8081/student/create
+    @PostMapping("student/create")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Student createStudent(@RequestBody Student student){
+        System.out.println(student.getId());
+        System.out.println(student.getFirstName());
+        System.out.println(student.getLastName());
+        return student;
+    }
+
 
 
 }
