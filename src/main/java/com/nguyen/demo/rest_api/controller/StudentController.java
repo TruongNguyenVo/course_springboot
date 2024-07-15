@@ -1,5 +1,8 @@
 package com.nguyen.demo.rest_api.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +19,17 @@ public class StudentController {
         "Nguyen",
         "Vo");
         return student;
+    }
+
+    @GetMapping("students")
+    public List<Student> getStudents(){
+        Student student1 = new Student(1, "nguyen", "vo");
+        Student student2 = new Student(2, "nguyen", "truong");
+        List<Student> students = new ArrayList<>();
+        students.add(student1);
+        students.add(student2);
+        return students;
+
     }
 
 }
