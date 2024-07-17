@@ -57,7 +57,7 @@ public class StudentController {
     }
 
     //Spring Boot RestAPI with Request Param
-    //http://localhost:8081/student/query?id=1&firstName=nguyen
+    //http://localhost:8081/students/query?id=1&firstName=nguyen
     @GetMapping("query")
     public Student studentRequestParam(@RequestParam int id,
                                        @RequestParam String firstName){
