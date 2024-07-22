@@ -1,4 +1,4 @@
-package com.javastudent.entity;
+package com.javastudent.webservice.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,7 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name = "persons")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,3 +27,4 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 }
+

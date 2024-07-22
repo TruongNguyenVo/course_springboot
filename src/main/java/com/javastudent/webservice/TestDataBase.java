@@ -1,5 +1,6 @@
 package com.javastudent.webservice;
 
+import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,13 +14,18 @@ public class TestDataBase {
     public TestDataBase(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
-    @GetMapping("/health")
-    public ResponseEntity<String> checkDatabaseConnection() {
+    @GetMapping("/database")
+    public boolean isDatabaseConnected() {
         try {
-            jdbcTemplate.queryForObject("SELECT 1 FROM users", Integer.class);
-            return ResponseEntity.ok("Database connection is successful.");
+            jdbcTemplate.execute("SELECT 1");
+            return true;
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("Failed to connect to the database." + "Loi: " + e);
+            return false;
         }
     }
+}
+class User {
+    public String ContactID;
+    public String FirstName;
+    public String LassName;
 }
