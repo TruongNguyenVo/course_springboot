@@ -1,5 +1,7 @@
 package com.javastudent.webservice.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +31,19 @@ public class UserController {
     }
 
     //get user by id API
-    // http://localhost:8081/api/users/{1}
+    // http://localhost:8081/api/users/1
     @GetMapping("{id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") Long userId){
         User user = userService.getUserById(userId);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    //get all user API
+    //http://localhost:8081/api/users
+    @GetMapping
+    public ResponseEntity<List<User>> getAllUser(){
+        List<User> users = userService.getAllUser();
+        return new ResponseEntity<>(users,HttpStatus.OK);
     }
 
 
