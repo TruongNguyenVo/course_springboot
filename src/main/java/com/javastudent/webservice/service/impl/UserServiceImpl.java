@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.javastudent.webservice.dto.UserDto;
 import com.javastudent.webservice.entity.User;
+import com.javastudent.webservice.mapper.UserMapper;
 import com.javastudent.webservice.repository.UserRepository;
 import com.javastudent.webservice.service.UserService;
 
@@ -21,22 +22,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDto createUser(UserDto userDto) {
 
-        //Convert UserDto into User JPA Entity
-        User user = new User(
-            userDto.getId(),
-            userDto.getFirstName(),
-            userDto.getLastName(),
-            userDto.getEmail()
-        );
+        User user = UserMapper.mapToUser(userDto);
         User savedUser =  userRepository.save(user);
 
         //Convert User JPA Entity into UserDto
-        UserDto savedUserDto = new UserDto(
-            user.getId(),
-            user.getFirstName(),
-            user.getLastName(),
-            user.getEmail()
-        );
+        UserDto savedUserDto = UserMapper.mapToUserDto(savedUser);
         return savedUserDto;
     }
 
