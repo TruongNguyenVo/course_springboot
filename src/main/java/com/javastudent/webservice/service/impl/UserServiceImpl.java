@@ -2,6 +2,8 @@ package com.javastudent.webservice.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -31,25 +33,28 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getUserById(Long userId) {
+    public UserDto getUserById(Long userId) {
         Optional<User> optionalUser =  userRepository.findById(userId);
-        return optionalUser.get();
+        User user =  optionalUser.get();
+        UserDto userDto = UserMapper.mapToUserDto(user);
+        return userDto;
     }
 
     @Override
-    public List<User> getAllUser() {
+    public List<UserDto> getAllUser() {
         List<User> users = userRepository.findAll();
-        return users;
+        return users.stream().map(UserMapper::mapToUserDto).collect(Collectors.toList());
     }
 
     @Override
-    public User updateUser(User user) {
+    public UserDto updateUser(User user) {
         User exsittingUser = userRepository.findById(user.getId()).get();
         exsittingUser.setFirstName(user.getFirstName());
         exsittingUser.setLastName(user.getLastName());
         exsittingUser.setEmail(user.getEmail());
         User updatedUser = userRepository.save(exsittingUser);
-        return updatedUser;
+
+        return UserMapper.mapToUserDto(updatedUser);
     }
 
     @Override
