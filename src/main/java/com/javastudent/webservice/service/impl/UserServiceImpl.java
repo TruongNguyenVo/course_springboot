@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.javastudent.webservice.dto.UserDto;
@@ -20,15 +21,21 @@ import lombok.AllArgsConstructor;
 public class UserServiceImpl implements UserService{
 
     private UserRepository userRepository;
+    private ModelMapper modelMapper;
 
     @Override
     public UserDto createUser(UserDto userDto) {
 
-        User user = UserMapper.mapToUser(userDto);
+        // User user = UserMapper.mapToUser(userDto);
+        User user = modelMapper.map(userDto, User.class);
+
+
         User savedUser =  userRepository.save(user);
 
         //Convert User JPA Entity into UserDto
-        UserDto savedUserDto = UserMapper.mapToUserDto(savedUser);
+        // UserDto savedUserDto = UserMapper.mapToUserDto(savedUser);
+        UserDto savedUserDto = modelMapper.map(savedUser, UserDto.class);
+
         return savedUserDto;
     }
 
