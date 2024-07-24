@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.javastudent.webservice.dto.UserDto;
 import com.javastudent.webservice.entity.User;
+import com.javastudent.webservice.mapper.AutoUserMapper;
 import com.javastudent.webservice.mapper.UserMapper;
 import com.javastudent.webservice.repository.UserRepository;
 import com.javastudent.webservice.service.UserService;
@@ -27,14 +28,16 @@ public class UserServiceImpl implements UserService{
     public UserDto createUser(UserDto userDto) {
 
         // User user = UserMapper.mapToUser(userDto);
-        User user = modelMapper.map(userDto, User.class);
+        // User user = modelMapper.map(userDto, User.class);
+        User user = AutoUserMapper.MAPPER.maptoUser(userDto);
 
 
         User savedUser =  userRepository.save(user);
 
         //Convert User JPA Entity into UserDto
         // UserDto savedUserDto = UserMapper.mapToUserDto(savedUser);
-        UserDto savedUserDto = modelMapper.map(savedUser, UserDto.class);
+        // UserDto savedUserDto = modelMapper.map(savedUser, UserDto.class);
+        UserDto savedUserDto = AutoUserMapper.MAPPER.mapToUserDto(savedUser);
 
         return savedUserDto;
     }
@@ -50,7 +53,8 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<UserDto> getAllUser() {
         List<User> users = userRepository.findAll();
-        return users.stream().map(UserMapper::mapToUserDto).collect(Collectors.toList());
+        // return users.stream().map(UserMapper::mapToUserDto).collect(Collectors.toList());
+        return users.stream().map((user) ->modelMapper.map(user, UserDto.class)).collect(Collectors.toList());
     }
 
     @Override
