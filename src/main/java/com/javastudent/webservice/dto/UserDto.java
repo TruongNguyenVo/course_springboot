@@ -16,16 +16,16 @@ public class UserDto {
     private Long id;
 
     //User fisrt name should not be null or empty
-    @NotEmpty
+    @NotEmpty(message = "User fisrt name should not be null or empty")
     private String firstName;
 
-    //User fisrt name should not be null or empty
-    @NotEmpty
+    //User last name should not be null or empty
+    @NotEmpty(message = "User last name should not be null or empty")
     private String lastName;
 
-    //User fisrt name should not be null or empty
+    //User email should not be null or empty
     //Email address should be valid
-    @NotEmpty
-    @Email
+    @NotEmpty(message = "User email should not be null or empty")
+    @Email(message = "Email address should be valid")
     private String email;
 }
