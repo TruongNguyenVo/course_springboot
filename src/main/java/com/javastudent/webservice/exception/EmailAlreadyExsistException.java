@@ -8,5 +8,6 @@ public class EmailAlreadyExsistException extends RuntimeException{
     private String message;
     public EmailAlreadyExsistException(String message){
         super(message);
+        this.message = message;
     }
 }
