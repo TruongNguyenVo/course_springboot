@@ -23,6 +23,7 @@ import com.javastudent.webservice.exception.ErrorDetails;
 import com.javastudent.webservice.exception.ResourceNotFoundException;
 import com.javastudent.webservice.service.UserService;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -34,7 +35,7 @@ public class UserController {
     //built create User Reat API
     //POST: http://localhost:8081/api/users
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto user){
+    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto user){
         UserDto savedUser = userService.createUser(user);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
@@ -59,7 +60,7 @@ public class UserController {
     //PUT: http://localhost:8081/api/users/1
     @PutMapping("{id}")
     public ResponseEntity<UserDto> updateUser(@PathVariable("id") Long userID, 
-                                            @RequestBody User user){
+    @Valid @RequestBody User user){
         user.setId(userID);
         UserDto updatedUser = userService.updateUser(user);
         return new ResponseEntity<>(updatedUser,HttpStatus.OK);
