@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.javastudent.webservice.dto.UserDto;
 import com.javastudent.webservice.entity.User;
+import com.javastudent.webservice.exception.EmailAlreadyExsistException;
 import com.javastudent.webservice.exception.ResourceNotFoundException;
 import com.javastudent.webservice.mapper.AutoUserMapper;
 import com.javastudent.webservice.mapper.UserMapper;
@@ -30,9 +31,15 @@ public class UserServiceImpl implements UserService{
 
         // User user = UserMapper.mapToUser(userDto);
         // User user = modelMapper.map(userDto, User.class);
+
+        //check email user exist
+        Optional<User> optionalUser = userRepository.findByEmail(userDto.getEmail());
+        if (optionalUser.isPresent()) {
+            System.out.println("///////////////////////////////////");
+            throw new EmailAlreadyExsistException("Email Already Exists for User");
+        }
+
         User user = AutoUserMapper.MAPPER.maptoUser(userDto);
-
-
         User savedUser =  userRepository.save(user);
 
         //Convert User JPA Entity into UserDto

@@ -10,14 +10,25 @@ import org.springframework.web.context.request.WebRequest;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-        @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ErrorDetails> handleResourceNotFoundException(ResourceNotFoundException resourceNotFoundException, WebRequest webRequest){
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorDetails> handleResourceNotFoundException(ResourceNotFoundException exception, WebRequest webRequest){
         ErrorDetails errorDetails = new ErrorDetails(
             LocalDateTime.now(),
-            resourceNotFoundException.getMessage(),
+            exception.getMessage(),
             webRequest.getDescription(false),
             "USER_NOT_FOUND"
         );
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+    
+    @ExceptionHandler(EmailAlreadyExsistException.class)
+    public ResponseEntity<ErrorDetails> handleEmailAlreadyException(EmailAlreadyExsistException exception, WebRequest webRequest){
+        ErrorDetails errorDetails = new ErrorDetails(
+            LocalDateTime.now(),
+            exception.getMessage(),
+            webRequest.getDescription(false),
+            "USER_EMAIL_ALREADY_EXISTS"
+        );
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 }
