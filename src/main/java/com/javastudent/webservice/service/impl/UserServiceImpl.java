@@ -35,7 +35,6 @@ public class UserServiceImpl implements UserService{
         //check email user exist
         Optional<User> optionalUser = userRepository.findByEmail(userDto.getEmail());
         if (optionalUser.isPresent()) {
-            System.out.println("///////////////////////////////////");
             throw new EmailAlreadyExsistException("Email Already Exists for User");
         }
 

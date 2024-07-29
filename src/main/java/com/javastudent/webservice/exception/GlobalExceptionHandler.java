@@ -11,7 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 @ControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ErrorDetails> handleResourceNotFoundException(ResourceNotFoundException exception, WebRequest webRequest){
+    public ResponseEntity<ErrorDetails> handlerResourceNotFoundException(ResourceNotFoundException exception, WebRequest webRequest){
         ErrorDetails errorDetails = new ErrorDetails(
             LocalDateTime.now(),
             exception.getMessage(),
@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
     }
     
     @ExceptionHandler(EmailAlreadyExsistException.class)
-    public ResponseEntity<ErrorDetails> handleEmailAlreadyException(EmailAlreadyExsistException exception, WebRequest webRequest){
+    public ResponseEntity<ErrorDetails> handlerEmailAlreadyException(EmailAlreadyExsistException exception, WebRequest webRequest){
         ErrorDetails errorDetails = new ErrorDetails(
             LocalDateTime.now(),
             exception.getMessage(),
@@ -30,5 +30,16 @@ public class GlobalExceptionHandler {
             "USER_EMAIL_ALREADY_EXISTS"
         );
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+    }
+    
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorDetails> handlerGlobalException(Exception exception, WebRequest webRequest){
+        ErrorDetails errorDetails = new ErrorDetails(
+            LocalDateTime.now(),
+            exception.getMessage(),
+            webRequest.getDescription(false),
+            "INTERAL SERVER ERROR"
+        );
+        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
