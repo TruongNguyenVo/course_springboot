@@ -44,10 +44,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserDto getUserById(Long userId) {
-        Optional<User> optionalUser =  userRepository.findById(userId);
-        User user =  optionalUser.get();
-        UserDto userDto = UserMapper.mapToUserDto(user);
-        return userDto;
+        User user =  userRepository.findById(userId).orElseThrow(
+            () -> new ResourceNotFoundException("User", "id", userId);
+        );
+        return AutoUserMapper.MAPPER.mapToUserDto(user);
     }
 
     @Override

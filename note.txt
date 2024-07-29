@@ -5,3 +5,8 @@ create: Hibernate sẽ tạo mới schema của cơ sở dữ liệu dựa trên
 create-drop: Tương tự như create, Hibernate sẽ tạo mới schema, nhưng khi ứng dụng được dừng, schema sẽ bị xóa đi.
 update: Hibernate sẽ cập nhật schema của cơ sở dữ liệu để phù hợp với định nghĩa của các đối tượng trong ứng dụng. Nếu schema chưa tồn tại, nó sẽ được tạo mới.
 validate: Hibernate sẽ kiểm tra tính hợp lệ của schema hiện tại với định nghĩa của các đối tượng trong ứng dụng. Nếu có sự không phù hợp, sẽ có thông báo lỗi.
+
+
+///////////////////////////////////////////
+extend: ket thua
+implement: interface
