@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.javastudent.webservice.dto.UserDto;
 import com.javastudent.webservice.entity.User;
+import com.javastudent.webservice.exception.ResourceNotFoundException;
 import com.javastudent.webservice.mapper.AutoUserMapper;
 import com.javastudent.webservice.mapper.UserMapper;
 import com.javastudent.webservice.repository.UserRepository;
@@ -44,8 +45,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserDto getUserById(Long userId) {
-        User user =  userRepository.findById(userId).orElseThrow(
-            () -> new ResourceNotFoundException("User", "id", userId);
+        User user = userRepository.findById(userId).orElseThrow(
+            () -> new ResourceNotFoundException("User", "id", userId)
         );
         return AutoUserMapper.MAPPER.mapToUserDto(user);
     }
@@ -59,7 +60,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserDto updateUser(User user) {
-        User exsittingUser = userRepository.findById(user.getId()).get();
+        User exsittingUser = userRepository.findById(user.getId()).orElseThrow(
+            () -> new ResourceNotFoundException("User", "id", user.getId())
+        );
         exsittingUser.setFirstName(user.getFirstName());
         exsittingUser.setLastName(user.getLastName());
         exsittingUser.setEmail(user.getEmail());
@@ -70,6 +73,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void deleteUser(Long userId) {
+        User exsittingUser = userRepository.findById(userId).orElseThrow(
+            () -> new ResourceNotFoundException("User", "id", userId)
+        );
         userRepository.deleteById(userId);
     }
 
