@@ -23,9 +23,16 @@ import com.javastudent.webservice.exception.ErrorDetails;
 import com.javastudent.webservice.exception.ResourceNotFoundException;
 import com.javastudent.webservice.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
+@Tag(
+    name = "CRUD REST API for User Resource",
+    description = "Create User, Read User By Id, Read All User, Update information's User, Delete User"
+)
 @RestController
 @AllArgsConstructor
 @RequestMapping("api/users")
@@ -34,6 +41,14 @@ public class UserController {
 
     //built create User Reat API
     //POST: http://localhost:8081/api/users
+    @Operation(
+        summary = "Create User REST API",
+        description = "Create User RestAPI is used to save user in database"
+    )
+    @ApiResponse(
+        responseCode = "201",
+        description = "HTTP Status 201 CREATED"
+    )
     @PostMapping
     public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto user){
         UserDto savedUser = userService.createUser(user);
@@ -50,6 +65,14 @@ public class UserController {
 
     //get all user API
     //GET: http://localhost:8081/api/users
+    @Operation(
+        summary = "Get All User REST API",
+        description = "Get all information's user in database"
+    )
+    @ApiResponse(
+        responseCode = "200",
+        description = "HTTP Status 200 SUCCESSFUL"
+    )
     @GetMapping
     public ResponseEntity<List<UserDto>> getAllUser(){
         List<UserDto> users = userService.getAllUser();

@@ -12,3 +12,5 @@ extend: ket thua
 implement: interface
 /////////////////////////////////////////
 actuator: info, health, beans, conditions, mappings, configprops, metrics, env & threaddump, loggers, shutdown
+////////////////////////////////////////
+http://localhost:8081/swagger-ui/index.html
