@@ -10,3 +10,5 @@ validate: Hibernate sẽ kiểm tra tính hợp lệ của schema hiện tại v
 ///////////////////////////////////////////
 extend: ket thua
 implement: interface
+/////////////////////////////////////////
+actuator: info, health, beans, conditions, mappings, configprops, metrics, env & threaddump, loggers, shutdown
