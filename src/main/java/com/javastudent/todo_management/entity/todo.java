@@ -13,11 +13,11 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="todos")
-public class todo {
+public class Todo {
     //fields
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,5 +28,10 @@ public class todo {
 
     @Column(nullable=false)
     private String decription;
+
+    @Column
     private boolean completed;
+
+
+
 }
