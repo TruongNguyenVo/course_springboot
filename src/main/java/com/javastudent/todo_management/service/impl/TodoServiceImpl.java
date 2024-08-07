@@ -46,6 +46,18 @@ public class TodoServiceImpl implements TodoService{
         return todos.stream().map((todo) -> modelMapper.map(todo, TodoDto.class)).collect(Collectors.toList());
     }
 
+    @Override
+    public TodoDto completedTodo(Long id) {
+        Todo todo = todoRepository.findById(id).get();
+        todo.setCompleted(Boolean.TRUE);
+        Todo savedTodo = todoRepository.save(todo);
+        TodoDto todoDto = modelMapper.map(savedTodo, TodoDto.class);
+        return todoDto;
+
+    }
+
+
+
 
 
 
