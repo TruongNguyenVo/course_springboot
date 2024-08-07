@@ -27,7 +27,7 @@ public class Todo {
     private String title;
 
     @Column(nullable=false)
-    private String decription;
+    private String description;
 
     @Column
     private boolean completed;
