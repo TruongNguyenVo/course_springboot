@@ -41,7 +41,7 @@ public class TodoController {
     @GetMapping
     public ResponseEntity<List<TodoDto>> getAllTodo(){
         List<TodoDto> todos = todoService.getAllTodo();
-        return new ResponseEntity<>(todos, HttpStatus.OK);        
+        return new ResponseEntity<>(todos, HttpStatus.OK);
     }
 
     //completed todo
