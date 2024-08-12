@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ public class TodoController {
     private TodoService todoService;
 
     //add restAPI
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<TodoDto> addTodo(@RequestBody TodoDto todoDto){
         TodoDto saveTodoDto =  todoService.addTodo(todoDto);
@@ -31,6 +33,7 @@ public class TodoController {
     }
 
     //get todo by id
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @GetMapping("{id}")
     public ResponseEntity<TodoDto> getTodoById(@PathVariable("id") Long todoDtoId){
         TodoDto todoDtoGet = todoService.getToDoById(todoDtoId);
@@ -38,6 +41,7 @@ public class TodoController {
     }
 
     //get all todo
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @GetMapping
     public ResponseEntity<List<TodoDto>> getAllTodo(){
         List<TodoDto> todos = todoService.getAllTodo();
@@ -45,6 +49,7 @@ public class TodoController {
     }
 
     //completed todo
+    @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("{id}/completed")
     public ResponseEntity<TodoDto> completedTodo(@PathVariable("id") Long todoID){
         TodoDto updateDto = todoService.completedTodo(todoID);
