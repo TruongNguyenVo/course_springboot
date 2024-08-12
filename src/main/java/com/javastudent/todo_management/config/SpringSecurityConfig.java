@@ -29,10 +29,15 @@ public class SpringSecurityConfig {
         UserDetails user = User.builder()
                                 .username("nguyenvo")
                                 .password(passwordEncoder().encode("12345"))
+                                .roles("USER")
+                                .build();
+        UserDetails admin = User.builder()
+                                .username("admin")
+                                .password(passwordEncoder().encode("admin"))
                                 .roles("ADMIN")
                                 .build();
 
-        return new InMemoryUserDetailsManager(user);
+        return new InMemoryUserDetailsManager(user, admin);
     }
 
     @Bean
