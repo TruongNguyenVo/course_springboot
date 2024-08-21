@@ -3,6 +3,7 @@ package com.javastudent.transaction_demo.service.impl;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.javastudent.transaction_demo.dto.OrderRequest;
 import com.javastudent.transaction_demo.dto.OrderResponse;
@@ -25,6 +26,7 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
+    @Transactional(rollbackFor= PaymentException.class)
     public OrderResponse placeOrder(OrderRequest orderRequest) {
 
 
