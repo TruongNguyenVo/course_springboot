@@ -1,0 +1,16 @@
+{
+    "order": {
+        "orderTackingNumber" :"Nguyen123",
+        "totalQuantity": 2,
+        "shoppingCartId" : 1,
+        "totalPrice" : 2000
+    },
+    "payment":{
+        "type" : "DEBIT",
+        "cardName": "Nguyen Vo 1234",
+        "cardNumber" : "1234 1234 1234",
+        "expiryYear" : 2,
+        "expiryMonth" : 2025,
+        "cvc" : 123
+    }
+}
