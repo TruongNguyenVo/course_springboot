@@ -1,5 +1,12 @@
 package com.javastudent.transaction_demo.dto;
 
-public class OrderResponse {
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+public class OrderResponse {
+    private String orderTackingNumber;
+    private String status;
+    private String message;
 }
