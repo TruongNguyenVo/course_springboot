@@ -14,3 +14,5 @@
         "cvc" : 123
     }
 }
+
+ Error creating bean with name 'productController' defined in file [D:\nguyen\lap trinh\transaction-demo\transaction-demo\target\classes\com\javastudent\transaction_demo\controller\ProductController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'productServiceImpl' defined in file [D:\nguyen\lap trinh\transaction-demo\transaction-demo\target\classes\com\javastudent\transaction_demo\service\impl\ProductServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'productRepository' defined in com.javastudent.transaction_demo.repository.ProductRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.List com.javastudent.transaction_demo.repository.ProductRepository.searchProducts(java.lang.String); Reason: Validation failed for query for method public abstract java.util.List com.javastudent.transaction_demo.repository.ProductRepository.searchProducts(java.lang.String)
