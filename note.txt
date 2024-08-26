@@ -15,4 +15,45 @@
     }
 }
 
- Error creating bean with name 'productController' defined in file [D:\nguyen\lap trinh\transaction-demo\transaction-demo\target\classes\com\javastudent\transaction_demo\controller\ProductController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'productServiceImpl' defined in file [D:\nguyen\lap trinh\transaction-demo\transaction-demo\target\classes\com\javastudent\transaction_demo\service\impl\ProductServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'productRepository' defined in com.javastudent.transaction_demo.repository.ProductRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.List com.javastudent.transaction_demo.repository.ProductRepository.searchProducts(java.lang.String); Reason: Validation failed for query for method public abstract java.util.List com.javastudent.transaction_demo.repository.ProductRepository.searchProducts(java.lang.String)
+Repository:
+    save() :As the name depicts, the save() method allows us to save an entity to the DB.
+    Update existing entity using save() method
+    As the name depicts, the saveAll() method allows us to save multiple entities to the DB.
+    As the name depicts, the findById() method allows us to get or retrieve an entity based on a given id (primary key) from the DB.
+    As the name depicts, the findAll() method allows us to get or retrieve all the entities from the database table.
+    As the name depicts, the deleteById() method allows us to delete an entity by id from the database table.
+    As the name depicts, the delete() method allows us to delete an entity from the database table.
+    As the name depicts, the deleteAll() method allows us to delete all the entities from the database table.
+    As the name depicts, the existsById() method allows us to check if the entity exists with a given id in a database table.
+    As the name depicts, the count() method allows us to count the number of records that exist in a database table.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+Rules to create query methods
+1. The name of our query method must start with one of the following prefixes: find...By,
+read...By, query...By, count...By, and get...By.
+Examples: findByName, readByName, queryByName, getByName
+
+2. If we want to limit the number of returned query results, we can add the First or the Top
+keyword before the first By word.
+Examples: findFirstByName, readFirst2ByName, findTop10ByName
+
+3. If we want to select unique results, we have to add the Distinct keyword before the first
+By word.
+Examples: findDistinctByName or findNameDistinctBy
+
+4. Combine property expression with AND and OR.
+Examples: findByNameOrDescription, findByNameAndDescription
+/////////////////////////////////////////////////////////////////////////////////////////////////
+Steps to create and use Spring Data JPA Repository
+1. Create a repository interface and extend to JpaRepository interface
+2. Add custom query methods to the created repository interface (if we need them)
+3. Inject the repository interface to another component and use the implementation that is provided automatically by Spring Data Jpa.
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
